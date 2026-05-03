@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portal de notícias, avisos e comunicados do Colégio Bankazi - Benguela, Angola">
+    <title>Portal Bankazi - Notícias e Comunicados</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="imgs/favicon-32x32.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" /></head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Top Bar -->
+
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="weather-widget">
+                <span><i class="fa-solid fa-cloud-sun"></i> Benguela, 28°C</span>
+                <span>|</span>
+                <span id="currentDate"><i class="fa-regular fa-calendar-days"></i> Carregando...</span>
+            </div>
+            <div class="contact-info">
+                <span><i class="fa-solid fa-phone"></i> (244) 923-456-789</span> 
+                <span><i class="fa-regular fa-envelope"></i> contato@bankazi.co.ao</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <!-- <div class="logo-icon"></div> -->
+                    <img src="imgs/logo da escola.png" alt="Logotipo do Colégio Bankazi" class="logo-image">
+                <div class="logo-text">
+                    <h1>BANKAZI</h1>
+                    <p>Colégio de Excelência</p>
+                </div>
+            </div>
+            <nav>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#noticias">Notícias</a></li>
+                    <li><a href="#calendario">Calendário</a></li>
+                    <li><a href="#contato">Contacto</a></li>
+                </ul>
+            </nav>
+            <!-- <div class="search-container">
+                <span class="search-icon"></span>
+                <input type="text" class="search-bar" id="searchInput" placeholder="avisos...">
+            </div> -->
+        </div>
+    </header>
+
+    <section class="search-section">
+    <div class="search-wrapper">
+        <div class="search-box">
+            <input type="text" id="searchInput"  placeholder="Escreva o termo que pretende pesquisar">
+            <button id="searchBtn">
+    <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+    </div>
+</section>
+
+    <!-- Hero Slider -->
+    <div class="hero-slider" id="heroSlider">
+        <div class="slide active" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 500%22><rect fill=%22%230f4c81%22 width=%221200%22 height=%22500%22/></svg>')">
+            <div class="slide-overlay">
+                <div class="slide-content">
+                    <span class="slide-badge">🎓 Educação de Qualidade</span>
+                    <h2 class="slide-title">Matrículas Abertas 2026</h2>
+                    <p class="slide-description">Venha fazer parte da família Bankazi. Vagas limitadas para todas as turmas do ensino fundamental e médio.</p>
+                    <a href="#" class="slide-button">Matricule-se Agora</a>
+                </div>
+            </div>
+        </div>
+        <div class="slide" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 500%22><rect fill=%22%2310b981%22 width=%221200%22 height=%22500%22/></svg>')">
+            <div class="slide-overlay">
+                <div class="slide-content">
+                    <span class="slide-badge">🎭 Cultura & Arte</span>
+                    <h2 class="slide-title">Festival Cultural 2026</h2>
+                    <p class="slide-description">Dias 20 e 21 de dezembro. Apresentações de dança, teatro, música e exposições artísticas.</p>
+                    <a href="#" class="slide-button">Saiba Mais</a>
+                </div>
+            </div>
+        </div>
+        <div class="slide" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 500%22><rect fill=%22%23ff6b35%22 width=%221200%22 height=%22500%22/></svg>')">
+            <div class="slide-overlay">
+                <div class="slide-content">
+                    <span class="slide-badge">🏆 Excelência</span>
+                    <h2 class="slide-title">Campeões Interescolares</h2>
+                    <p class="slide-description">Nossa equipe conquistou o 1º lugar no Torneio de Basquetebol de Benguela 2026!</p>
+                    <a href="#" class="slide-button">Ver Galeria</a>
+                </div>
+            </div>
+        </div>
+        <div class="slider-controls" id="sliderControls"></div>
+    </div>
+
+    <main class="container">
+        <!-- Quick Stats -->
+        <section class="quick-stats">
+            <ul class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-book"></i></div>
+                <div class="stat-number" data-target="800">0</div>
+                <div class="stat-label">Alunos Matriculados</div>
+            </ul>
+            <ul class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-chalkboard-user" style="color: rgb(64, 81, 142);"></i></div>
+                <div class="stat-number" data-target="87">0</div>
+                <div class="stat-label">Professores Qualificados</div>
+            </ul>
+            <ul class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-trophy" style="color: rgb(255, 212, 59);"></i></div>
+                <div class="stat-number" data-target="15">0</div>
+                <div class="stat-label">Prêmios Conquistados</div>
+            </ul>
+            <ul class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-star" style="color: rgb(255, 212, 59);"></i></div>
+                <div class="stat-number" data-target="27">0</div>
+                <div class="stat-label">Anos de Excelência</div>
+            </ul>
+        </section>
+
+        <!-- Category Filter -->
+        <section class="category-filter" id="noticias">
+            <button class="filter-btn active" data-category="todas"><i class="fa-solid fa-newspaper"></i> Todas</button>
+            <button class="filter-btn" data-category="aviso"><i class="fa-solid fa-bullhorn"></i> Avisos</button>
+            <button class="filter-btn" data-category="comunicado"><i class="fa-regular fa-chart-bar"></i> Comunicados</button>
+            <button class="filter-btn" data-category="evento"><i class="fa-solid fa-masks-theater" style="color: rgb(65, 130, 94);"></i> Eventos</button>
+            <button class="filter-btn" data-category="urgente"><i class="fa-solid fa-flag" style="color: rgb(255, 0, 21);"></i> Urgente</button>
+        </section>
+
+        <!-- News Grid -->
+        <div class="news-grid" id="newsGrid">
+            <!-- News cards will be inserted by JavaScript -->
+        </div>
+
+        <!-- Calendar Widget -->
+        <div class="calendar-widget" id="calendario">
+            <div class="calendar-header">
+                <h3 class="calendar-title"><i class="fa-solid fa-calendar-check"></i> Próximos Eventos</h3>
+            </div>
+            <div class="event-list" id="eventList">
+                <!-- Events will be inserted by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="newsletter-section">
+            <div class="newsletter-content">
+                <h3 class="newsletter-title"><i class="fa-solid fa-envelope-open-text"></i> Receba Nossas Notícias</h3>
+                <p class="newsletter-description">
+                    Inscreva-se no nosso boletim informativo e fique por dentro de todas as novidades, eventos e comunicados do Colégio Bankazi.
+                </p>
+                <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" class="newsletter-input" placeholder="E-mail" required>
+                    <button type="submit" class="newsletter-button">Inscrever-se</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contato">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Colégio Bankazi</h4>
+                <p>Formando cidadãos de excelência desde 1998. Educação de qualidade que transforma vidas e constrói futuros brilhantes.</p>
+                <!-- <div class="social-links">
+                    <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fa-brands fa-facebook"></i></a>
+                    
+                </div> -->
+            </div>
+            <div class="footer-section">
+                <h4>Contato</h4>
+                <p><i class="fa-solid fa-location-dot"></i> Rua Principal, Nº 123, Benguela</p>
+                <p><i class="fa-solid fa-phone"></i> (244) 923-456-789</p>
+                <p><i class="fa-regular fa-envelope"></i> contato@bankazi.co.ao</p>
+                <p><i class="fa-solid fa-business-time"></i> Seg - Sex: 7h30 - 16h00</p>
+            </div>
+            <div class="footer-section">
+                <h4>Links Rápidos</h4>
+                <a href="about.html">Sobre Nós</a>
+            </div>
+            <div class="footer-section">
+                <h4>Serviços</h4>
+                <a href="#">Calendário Escolar</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Colégio Bankazi. Todos os direitos reservados. Desenvolvido com cuidado para educação de qualidade.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+   <script src="js/javascript.js"></script>
+</body>
+</html>
