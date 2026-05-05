@@ -157,26 +157,51 @@ function setupSearch() {
     const searchSection = document.querySelector('.search-section');
     const container     = document.querySelector('.container');
 
+    // Dynamically compute the sticky offset from the actual header height
+    function getStickyTop() {
+        const header = document.querySelector('header');
+        return header ? header.offsetHeight : 80;
+    }
+
+    let hasScrolledToNews = false;
+
     function performSearch() {
         currentSearch = searchInput.value;
         const hasContent = currentSearch.trim() !== '';
 
         if (hasContent) {
-            // ── Activate sticky + compact cards ──
+            // Update sticky top to match real header height
+            searchSection.style.top = getStickyTop() + 'px';
             searchSection.classList.add('is-sticky');
             if (container) container.classList.add('search-active');
             renderNews();
-            // Scroll news into view only on first keystroke (not on every keystroke)
-            // to avoid the jarring continuous scroll as the user types
+
+            // Scroll to news grid only once per search session
+            if (!hasScrolledToNews) {
+                hasScrolledToNews = true;
+                setTimeout(() => {
+                    const newsSection = document.getElementById('noticias');
+                    if (newsSection) newsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 50);
+            }
         } else {
-            // FIX: when the user clears the input, preserve scroll position.
-            // Capture it before the layout shift caused by removing is-sticky.
-            const scrollY = window.scrollY;
+            hasScrolledToNews = false;
+
+            // Snapshot the search bar's viewport position BEFORE the layout shift
+            const searchRect  = searchSection.getBoundingClientRect();
+            const scrollBefore = window.scrollY;
+
+            searchSection.style.top = '';
             searchSection.classList.remove('is-sticky');
             if (container) container.classList.remove('search-active');
             renderNews();
-            // Restore scroll position immediately after layout shift
-            window.scrollTo({ top: scrollY, behavior: 'instant' });
+
+            // After the browser repaints, measure how much the layout shifted
+            // and compensate so the user stays exactly where they were
+            requestAnimationFrame(() => {
+                const shift = searchSection.getBoundingClientRect().top - searchRect.top;
+                window.scrollTo({ top: scrollBefore + shift, behavior: 'instant' });
+            });
         }
     }
 
@@ -185,10 +210,6 @@ function setupSearch() {
     searchInput.addEventListener('keydown', e => {
         if (e.key === 'Enter') { e.preventDefault(); performSearch(); }
     });
-
-    // FIX: removed the blur listener that was incorrectly stripping is-sticky
-    // even when there was still content in the input. The sticky state is now
-    // driven purely by whether the input has content.
 }
 
 // ===== RENDER EVENTS =====
@@ -248,11 +269,11 @@ function scrollToTop() {
 }
 
 // ===== MOBILE MENU =====
-function toggleMobileMenu() {
+function toggleMobileMenu(event) {
+    if (event) event.stopPropagation();
     const menu = document.getElementById('navMenu');
     const btn  = document.querySelector('.mobile-menu-btn');
     const isOpen = menu.classList.toggle('mobile-active');
-    // FIX: rotate hamburger icon to signal open/close state
     btn.classList.toggle('is-open', isOpen);
 }
 
@@ -264,9 +285,12 @@ function closeMobileMenu() {
 }
 
 // FIX: close mobile menu when user clicks anywhere outside the nav
+// Use capture=false + check that the menu is actually open before closing,
+// and skip the very click that triggered the toggle (via setTimeout).
 document.addEventListener('click', function (e) {
-    const nav = document.querySelector('nav');
-    if (nav && !nav.contains(e.target)) {
+    const nav  = document.querySelector('nav');
+    const menu = document.getElementById('navMenu');
+    if (nav && !nav.contains(e.target) && menu && menu.classList.contains('mobile-active')) {
         closeMobileMenu();
     }
 });

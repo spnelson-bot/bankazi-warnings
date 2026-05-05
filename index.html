@@ -43,11 +43,11 @@
                 </div>
             </div>
             <nav>
-                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu(event)">☰</button>
                 <ul class="nav-menu" id="navMenu">
-                    <li><a href="#noticias">Notícias</a></li>
-                    <li><a href="#calendario">Calendário</a></li>
-                    <li><a href="#contato">Contacto</a></li>
+                    <li><a href="#noticias" onclick="closeMobileMenu()">Notícias</a></li>
+                    <li><a href="#calendario" onclick="closeMobileMenu()">Calendário</a></li>
+                    <li><a href="#contato" onclick="closeMobileMenu()">Contacto</a></li>
                 </ul>
             </nav>
             <!-- <div class="search-container">
