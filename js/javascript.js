@@ -1,38 +1,37 @@
-const newsData=[
-  {id:1,category:'aviso',icon:'📢',title:'Reunião de Pais e Encarregados de Educação',excerpt:'Comunicamos a todos os encarregados de educação que no próximo dia 22 de dezembro haverá reunião para discussão do aproveitamento escolar do 1º trimestre.',date:'18 de Dezembro, 2026'},
-  {id:2,category:'evento',icon:'🎭',title:'Festival Cultural Bankazi 2026',excerpt:'Acontece nos dias 20 e 21 de dezembro o nosso tradicional Festival Cultural com apresentações de dança, teatro, música e exposições artísticas dos nossos alunos.',date:'17 de Dezembro, 2026'},
-  {id:3,category:'comunicado',icon:'📋',title:'Calendário de Provas Finais',excerpt:'Já está disponível o calendário completo das provas finais do 1º trimestre. As avaliações iniciam no dia 8 de janeiro. Consulte os horários no portal.',date:'15 de Dezembro, 2026'},
-  {id:4,category:'evento',icon:'🏆',title:'Bankazi Campeão no Torneio Interescolar',excerpt:'Nossa equipe de basquetebol conquistou o 1º lugar no Torneio Interescolar de Benguela 2026. Parabéns aos atletas e ao professor de Educação Física!',date:'14 de Dezembro, 2026'},
-  {id:5,category:'urgente',icon:'🚨',title:'Alteração no Horário de Saída - Sexta-feira',excerpt:'Informamos que nesta sexta-feira, dia 20, devido ao Festival Cultural, a saída dos alunos será às 16h30. Pedimos atenção dos encarregados de educação.',date:'18 de Dezembro, 2026'},
-  {id:6,category:'aviso',icon:'🎒',title:'Férias Escolares de Fim de Ano',excerpt:'As férias escolares iniciam no dia 23 de dezembro e as aulas retornam no dia 20 de janeiro de 2026. Desejamos a todos excelentes festas e um merecido descanso!',date:'12 de Dezembro, 2026'},
-  {id:7,category:'comunicado',icon:'📚',title:'Nova Biblioteca Digital Disponível',excerpt:'Temos o prazer de anunciar o lançamento da nossa biblioteca digital com mais de 5.000 títulos disponíveis para consulta online. Acesso gratuito para todos os alunos.',date:'10 de Dezembro, 2026'},
-  {id:8,category:'evento',icon:'🎨',title:'Exposição de Arte dos Alunos',excerpt:'De 20 a 22 de dezembro, nossa escola receberá uma exposição com os melhores trabalhos artísticos produzidos pelos alunos durante o ano letivo.',date:'09 de Dezembro, 2026'},
-  {id:9,category:'aviso',icon:'💳',title:'Prazo para Pagamento de Janeiro',excerpt:'Informamos que o prazo para pagamento das mensalidades de janeiro termina no dia 10. Após esta data, haverá acréscimo de multa conforme contrato.',date:'08 de Dezembro, 2026'}
+const newsData = [
+    { id: 1, category: 'aviso',     icon: '📢', title: 'Reunião de Pais e Encarregados de Educação',  excerpt: 'Comunicamos a todos os encarregados de educação que no próximo dia 22 de dezembro haverá reunião para discussão do aproveitamento escolar do 1º trimestre.',                                                               date: '18 de Dezembro, 2026' },
+    { id: 2, category: 'evento',    icon: '🎭', title: 'Festival Cultural Bankazi 2026',               excerpt: 'Acontece nos dias 20 e 21 de dezembro o nosso tradicional Festival Cultural com apresentações de dança, teatro, música e exposições artísticas dos nossos alunos.',                                                    date: '17 de Dezembro, 2026' },
+    { id: 3, category: 'comunicado',icon: '📋', title: 'Calendário de Provas Finais',                  excerpt: 'Já está disponível o calendário completo das provas finais do 1º trimestre. As avaliações iniciam no dia 8 de janeiro. Consulte os horários no portal.',                                                               date: '15 de Dezembro, 2026' },
+    { id: 4, category: 'evento',    icon: '🏆', title: 'Bankazi Campeão no Torneio Interescolar',      excerpt: 'Nossa equipe de basquetebol conquistou o 1º lugar no Torneio Interescolar de Benguela 2026. Parabéns aos atletas e ao professor de Educação Física!',                                                                date: '14 de Dezembro, 2026' },
+    { id: 5, category: 'urgente',   icon: '🚨', title: 'Alteração no Horário de Saída - Sexta-feira',  excerpt: 'Informamos que nesta sexta-feira, dia 20, devido ao Festival Cultural, a saída dos alunos será às 16h30. Pedimos atenção dos encarregados de educação.',                                                             date: '18 de Dezembro, 2026' },
+    { id: 6, category: 'aviso',     icon: '🎒', title: 'Férias Escolares de Fim de Ano',               excerpt: 'As férias escolares iniciam no dia 23 de dezembro e as aulas retornam no dia 20 de janeiro de 2026. Desejamos a todos excelentes festas e um merecido descanso!',                                                    date: '12 de Dezembro, 2026' },
+    { id: 7, category: 'comunicado',icon: '📚', title: 'Nova Biblioteca Digital Disponível',            excerpt: 'Temos o prazer de anunciar o lançamento da nossa biblioteca digital com mais de 5.000 títulos disponíveis para consulta online. Acesso gratuito para todos os alunos.',                                               date: '10 de Dezembro, 2026' },
+    { id: 8, category: 'evento',    icon: '🎨', title: 'Exposição de Arte dos Alunos',                 excerpt: 'De 20 a 22 de dezembro, nossa escola receberá uma exposição com os melhores trabalhos artísticos produzidos pelos alunos durante o ano letivo.',                                                                     date: '09 de Dezembro, 2026' },
+    { id: 9, category: 'aviso',     icon: '💳', title: 'Prazo para Pagamento de Janeiro',              excerpt: 'Informamos que o prazo para pagamento das mensalidades de janeiro termina no dia 10. Após esta data, haverá acréscimo de multa conforme contrato.',                                                                   date: '08 de Dezembro, 2026' }
 ];
 
-const eventsData=[
-  {day:'20',month:'DEZ',title:'Festival Cultural - Dia 1',time:'14h00 - Auditório Principal'},
-  {day:'21',month:'DEZ',title:'Festival Cultural - Dia 2',time:'14h00 - Auditório Principal'},
-  {day:'22',month:'DEZ',title:'Reunião de Pais',time:'15h00 - Salas de Aula'},
-  {day:'23',month:'DEZ',title:'Início das Férias',time:'Boas Festas!'},
-  {day:'08',month:'JAN',title:'Início das Provas Finais',time:'Conforme calendário'}
+const eventsData = [
+    { day: '20', month: 'DEZ', title: 'Festival Cultural - Dia 1',   time: '14h00 - Auditório Principal' },
+    { day: '21', month: 'DEZ', title: 'Festival Cultural - Dia 2',   time: '14h00 - Auditório Principal' },
+    { day: '22', month: 'DEZ', title: 'Reunião de Pais',             time: '15h00 - Salas de Aula'       },
+    { day: '23', month: 'DEZ', title: 'Início das Férias',           time: 'Boas Festas!'                },
+    { day: '08', month: 'JAN', title: 'Início das Provas Finais',    time: 'Conforme calendário'         }
 ];
 
-const gradients=[
-  'linear-gradient(135deg,#0f4c81,#ff6b35)',
-  'linear-gradient(135deg,#2a9d8f,#e63946)',
-  'linear-gradient(135deg,#8b5cf6,#ec4899)',
-  'linear-gradient(135deg,#06b6d4,#3b82f6)',
-  'linear-gradient(135deg,#f59e0b,#ef4444)',
-  'linear-gradient(135deg,#10b981,#059669)'
+const gradients = [
+    'linear-gradient(135deg,#0f4c81,#ff6b35)',
+    'linear-gradient(135deg,#2a9d8f,#e63946)',
+    'linear-gradient(135deg,#8b5cf6,#ec4899)',
+    'linear-gradient(135deg,#06b6d4,#3b82f6)',
+    'linear-gradient(135deg,#f59e0b,#ef4444)',
+    'linear-gradient(135deg,#10b981,#059669)'
 ];
 
-// ===== SEARCH STATE =====
+// ===== STATE =====
 let currentCategory = 'todas';
-let currentSearch = '';
+let currentSearch   = '';
 
 // ===== ACCENT NORMALIZER =====
-// Strips accents so "reuniao" matches "reunião", "ferias" matches "férias", etc.
 function normalize(str) {
     return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 }
@@ -42,14 +41,15 @@ function updateCurrentDate() {
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const date = new Date().toLocaleDateString('pt-BR', options);
     const capitalizedDate = date.charAt(0).toUpperCase() + date.slice(1);
-    document.getElementById('currentDate').innerHTML = `<i class="fa-regular fa-calendar-days"></i> ${capitalizedDate}`;
+    document.getElementById('currentDate').innerHTML =
+        `<i class="fa-regular fa-calendar-days"></i> ${capitalizedDate}`;
 }
 
 // ===== PROGRESS BAR =====
 function updateProgressBar() {
     const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+    const height    = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled  = height > 0 ? (winScroll / height) * 100 : 0;
     document.getElementById('progressBar').style.width = scrolled + '%';
 }
 
@@ -71,7 +71,7 @@ function createSliderDots() {
 
 function goToSlide(n) {
     const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.slider-dot');
+    const dots   = document.querySelectorAll('.slider-dot');
     slides[currentSlide].classList.remove('active');
     dots[currentSlide].classList.remove('active');
     currentSlide = (n + slides.length) % slides.length;
@@ -95,8 +95,8 @@ function renderNews() {
     if (currentSearch.trim() !== '') {
         const term = normalize(currentSearch.trim());
         filtered = filtered.filter(news =>
-            normalize(news.title).includes(term) ||
-            normalize(news.excerpt).includes(term) ||
+            normalize(news.title).includes(term)    ||
+            normalize(news.excerpt).includes(term)  ||
             normalize(news.category).includes(term)
         );
     }
@@ -152,36 +152,43 @@ function setupCategoryFilter() {
 
 // ===== SEARCH =====
 function setupSearch() {
-    const searchInput = document.getElementById('searchInput');
-    const searchBtn = document.getElementById('searchBtn');
-
+    const searchInput   = document.getElementById('searchInput');
+    const searchBtn     = document.getElementById('searchBtn');
     const searchSection = document.querySelector('.search-section');
+    const container     = document.querySelector('.container');
 
     function performSearch() {
         currentSearch = searchInput.value;
-        renderNews();
-        if (currentSearch.trim() !== '') {
-            // Make search bar sticky while user is typing
+        const hasContent = currentSearch.trim() !== '';
+
+        if (hasContent) {
+            // ── Activate sticky + compact cards ──
             searchSection.classList.add('is-sticky');
-            document.getElementById('newsGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (container) container.classList.add('search-active');
+            renderNews();
+            // Scroll news into view only on first keystroke (not on every keystroke)
+            // to avoid the jarring continuous scroll as the user types
         } else {
-            // Remove sticky when search is cleared
+            // FIX: when the user clears the input, preserve scroll position.
+            // Capture it before the layout shift caused by removing is-sticky.
+            const scrollY = window.scrollY;
             searchSection.classList.remove('is-sticky');
+            if (container) container.classList.remove('search-active');
+            renderNews();
+            // Restore scroll position immediately after layout shift
+            window.scrollTo({ top: scrollY, behavior: 'instant' });
         }
     }
 
     searchInput.addEventListener('input', performSearch);
     searchBtn.addEventListener('click', performSearch);
-    searchInput.addEventListener('keydown', (e) => {
+    searchInput.addEventListener('keydown', e => {
         if (e.key === 'Enter') { e.preventDefault(); performSearch(); }
     });
 
-    // Also remove sticky if user clears the input manually
-    searchInput.addEventListener('blur', () => {
-        if (searchInput.value.trim() === '') {
-            searchSection.classList.remove('is-sticky');
-        }
-    });
+    // FIX: removed the blur listener that was incorrectly stripping is-sticky
+    // even when there was still content in the input. The sticky state is now
+    // driven purely by whether the input has content.
 }
 
 // ===== RENDER EVENTS =====
@@ -206,13 +213,13 @@ function renderEvents() {
 
 // ===== STATS COUNTER =====
 function animateStats() {
-    const observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const target = parseInt(entry.target.getAttribute('data-target'));
-                let current = 0;
+                const target    = parseInt(entry.target.getAttribute('data-target'));
+                let   current   = 0;
                 const increment = target / 50;
-                const timer = setInterval(() => {
+                const timer     = setInterval(() => {
                     current += increment;
                     if (current >= target) {
                         entry.target.textContent = target;
@@ -242,12 +249,27 @@ function scrollToTop() {
 
 // ===== MOBILE MENU =====
 function toggleMobileMenu() {
-    document.getElementById('navMenu').classList.toggle('mobile-active');
+    const menu = document.getElementById('navMenu');
+    const btn  = document.querySelector('.mobile-menu-btn');
+    const isOpen = menu.classList.toggle('mobile-active');
+    // FIX: rotate hamburger icon to signal open/close state
+    btn.classList.toggle('is-open', isOpen);
 }
 
 function closeMobileMenu() {
-    document.getElementById('navMenu').classList.remove('mobile-active');
+    const menu = document.getElementById('navMenu');
+    const btn  = document.querySelector('.mobile-menu-btn');
+    menu.classList.remove('mobile-active');
+    btn.classList.remove('is-open');
 }
+
+// FIX: close mobile menu when user clicks anywhere outside the nav
+document.addEventListener('click', function (e) {
+    const nav = document.querySelector('nav');
+    if (nav && !nav.contains(e.target)) {
+        closeMobileMenu();
+    }
+});
 
 // ===== NEWS DETAIL =====
 function showNewsDetail(id) {
@@ -285,7 +307,10 @@ window.addEventListener('scroll', () => {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const target = document.querySelector(this.getAttribute('href'));
-        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     });
 });
 

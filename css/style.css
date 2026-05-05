@@ -69,6 +69,14 @@ body {
     flex-wrap: wrap;
 }
 
+/* ===== TICKER / MARQUEE ===== */
+@keyframes ticker-scroll {
+    from { transform: translateX(100%); }
+    to   { transform: translateX(-100%); }
+}
+.ticker-wrap    { overflow: hidden; white-space: nowrap; }
+.ticker-content { display: inline-block; animation: ticker-scroll 28s linear infinite; }
+
 /* ===== HEADER ===== */
 header {
     background: white;
@@ -76,12 +84,13 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    animation: slideDown 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    /* FIX: gentle slide-in, removed aggressive cubic-bezier bounce */
+    animation: slideDown 0.4s ease-out;
 }
 
 @keyframes slideDown {
     from { transform: translateY(-100%); opacity: 0; }
-    to   { transform: translateY(0);    opacity: 1; }
+    to   { transform: translateY(0);     opacity: 1; }
 }
 
 .header-content {
@@ -104,14 +113,10 @@ header {
 
 .logo:hover { transform: scale(1.04); }
 
-.logo-image {
-    width: 60px;
-    height: 60px;
-}
+.logo-image { width: 60px; height: 60px; }
 
 .logo-icon {
-    width: 60px;
-    height: 60px;
+    width: 60px; height: 60px;
     border-radius: 6px;
     display: flex;
     align-items: center;
@@ -167,18 +172,17 @@ nav {
 .nav-menu a::after {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 3px;
+    bottom: 0; left: 50%;
+    width: 0; height: 3px;
     background: var(--secondary);
     transition: all 0.3s;
     transform: translateX(-50%);
 }
 
 .nav-menu a:hover::after { width: 100%; }
-.nav-menu a:hover { color: var(--primary); }
+.nav-menu a:hover        { color: var(--primary); }
 
+/* FIX: smooth rotation on hamburger open/close */
 .mobile-menu-btn {
     display: none;
     background: none;
@@ -187,7 +191,9 @@ nav {
     cursor: pointer;
     color: var(--dark);
     padding: 0.25rem;
+    transition: transform 0.3s ease;
 }
+.mobile-menu-btn.is-open { transform: rotate(90deg); }
 
 /* ===== SEARCH SECTION ===== */
 .search-section {
@@ -197,8 +203,7 @@ nav {
     border-bottom: 1px solid var(--border);
 }
 
-
-/* Sticky only while user is actively searching */
+/* FIX: sticky only while user has content in the search bar */
 .search-section.is-sticky {
     position: sticky;
     top: 80px;
@@ -227,7 +232,7 @@ nav {
 
 .search-box input {
     flex: 1;
-    min-width: 0;           /* prevents overflow on small screens */
+    min-width: 0;
     padding: 0.9rem 1rem;
     border: none;
     outline: none;
@@ -237,7 +242,7 @@ nav {
 }
 
 .search-box button {
-    flex-shrink: 0;         /* never squishes */
+    flex-shrink: 0;
     padding: 0.9rem 1.2rem;
     background: #e5e7eb;
     border: none;
@@ -259,8 +264,7 @@ nav {
 
 .slide {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     opacity: 0;
     transition: opacity 1s ease-in-out;
     background-size: cover;
@@ -273,7 +277,7 @@ nav {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: linear-gradient(135deg, rgba(15, 76, 129, 0.9), rgba(255, 107, 53, 0.7));
+    background: linear-gradient(135deg, rgba(15,76,129,0.9), rgba(255,107,53,0.7));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -346,8 +350,7 @@ nav {
 }
 
 .slider-dot {
-    width: 12px;
-    height: 12px;
+    width: 12px; height: 12px;
     border-radius: 50%;
     background: rgba(255,255,255,0.5);
     cursor: pointer;
@@ -415,7 +418,8 @@ nav {
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 4px 20px var(--shadow);
-    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    /* FIX: replaced aggressive cubic-bezier bounce with smooth ease */
+    transition: all 0.3s ease;
     cursor: pointer;
     opacity: 0;
     animation: fadeInUp 0.6s ease-out forwards;
@@ -428,7 +432,7 @@ nav {
 }
 
 .news-card:hover {
-    transform: translateY(-10px) scale(1.02);
+    transform: translateY(-8px) scale(1.01);
     box-shadow: 0 15px 40px var(--shadow-lg);
 }
 
@@ -468,10 +472,10 @@ nav {
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
-.category-badge.aviso     { background: var(--warning); }
-.category-badge.comunicado{ background: var(--secondary); }
-.category-badge.evento    { background: var(--success); }
-.category-badge.urgente   { background: #dc2626; animation: pulse 2s infinite; }
+.category-badge.aviso      { background: var(--warning); }
+.category-badge.comunicado { background: var(--secondary); }
+.category-badge.evento     { background: var(--success); }
+.category-badge.urgente    { background: #dc2626; animation: pulse 2s infinite; }
 
 @keyframes pulse {
     0%, 100% { transform: scale(1); }
@@ -547,6 +551,32 @@ nav {
     background: var(--primary);
     color: white;
     transform: scale(1.05);
+}
+
+/* ===== SEARCH RESULTS: COMPACT CARDS ===== */
+/* FIX: when .search-active is added to .container, cards shrink */
+.search-active .news-grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+}
+
+.search-active .news-image {
+    height: 150px;
+    font-size: 3rem;
+}
+
+.search-active .news-content {
+    padding: 1.1rem 1.25rem;
+}
+
+.search-active .news-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+}
+
+.search-active .news-excerpt {
+    font-size: 0.875rem;
+    -webkit-line-clamp: 2;
 }
 
 /* ===== NO RESULTS ===== */
@@ -676,8 +706,8 @@ nav {
     border-radius: 50%;
 }
 
-.newsletter-content   { position: relative; z-index: 1; }
-.newsletter-title     { font-family: 'Playfair Display', serif; font-size: 2.25rem; font-weight: 800; margin-bottom: 1rem; }
+.newsletter-content     { position: relative; z-index: 1; }
+.newsletter-title       { font-family: 'Playfair Display', serif; font-size: 2.25rem; font-weight: 800; margin-bottom: 1rem; }
 .newsletter-description { font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.95; }
 
 .newsletter-form {
@@ -804,6 +834,7 @@ footer {
     .nav-menu { display: none; }
     .mobile-menu-btn { display: block; }
 
+    /* FIX: smooth menu entrance animation instead of hard pop-in */
     .nav-menu.mobile-active {
         display: flex;
         flex-direction: column;
@@ -816,7 +847,13 @@ footer {
         min-width: 200px;
         border-radius: 0 0 12px 12px;
         z-index: 100;
+        animation: menuSlideDown 0.25s ease-out both;
     }
+}
+
+@keyframes menuSlideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 @media (max-width: 768px) {
@@ -843,15 +880,21 @@ footer {
     .search-box input     { font-size: 0.95rem; padding: 0.8rem 0.85rem; }
     .search-box button    { padding: 0.8rem 1rem; font-size: 1rem; }
 
+    /* FIX: ticker slowed down for mobile readability */
+    .ticker-content       { animation-duration: 45s; }
+
     .category-filter      { gap: 0.5rem; }
     .filter-btn           { padding: 0.55rem 1.1rem; font-size: 0.82rem; }
+
+    /* FIX: single-column in search mode on mobile */
+    .search-active .news-grid { grid-template-columns: 1fr; gap: 1rem; }
 }
 
 @media (max-width: 480px) {
-    .quick-stats          { grid-template-columns: 1fr 1fr; }
-    .stat-card            { padding: 1.25rem; }
-    .stat-icon            { font-size: 2rem; }
-    .stat-number          { font-size: 1.75rem; }
-    .news-image           { height: 180px; font-size: 3rem; }
-    .footer-content       { grid-template-columns: 1fr; }
+    .quick-stats { grid-template-columns: 1fr 1fr; }
+    .stat-card   { padding: 1.25rem; }
+    .stat-icon   { font-size: 2rem; }
+    .stat-number { font-size: 1.75rem; }
+    .news-image  { height: 180px; font-size: 3rem; }
+    .footer-content { grid-template-columns: 1fr; }
 }
